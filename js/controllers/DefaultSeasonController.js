@@ -1,10 +1,10 @@
 app.controller('DefaultSeasonController', function($scope, $stateParams) {
 
     $scope.data = data;
-    $scope.currentYear = data.season[3].years;
+    $scope.currentYear = data.season[0].years;
 
     // selected button code
-    $scope.selectedIndex = 3;
+    $scope.selectedIndex = 0;
 
     $scope.select = function(ind){
         $scope.selectedIndex = ind;

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <title>Generate JSON for Roster</title>
+
+  <style>
+  input {
+    display: block;
+    margin-bottom: 10px;
+    padding: 4px;
+    width: 100%;
+  }
+  input[type="submit"] {
+    width: auto;
+  }
+  textarea{
+    width: 100%;
+    height: 100px;
+  }
+  .personForm {
+    background: #eee;
+    padding: 10px;
+  }
+  .submit {
+    margin-top: 10px;
+  }
+  .addAnother {
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  hr {
+    display: block;
+    width: 100%;
+  }
+  </style>
+</head>
+
+<body>
+  <div style="width: 800px; margin: auto">
+      <h1>ROSTER</h1>
+
+    <p>Use this tool to convert yo data into the right format for the roster page!</p>
+    <p>
+      Copy and paste the output into 'data/roster.js', in <code>'season': [</code> and before
+      the first <code>{ "years":</code>. Don't forget to add a comma at the end of the last curly bracket!
+    </p>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  
+    <form id="roster">
+      <div>
+        <label>Season <input name="years" placeholder="2015-2016"></label>
+      </div>
+
+      <div class="personForm col-md-6">
+        <input name="person[][name]" placeholder="Name">
+        <input name="person[][img_src]" placeholder="images/photos/15-16/name.jpg">
+        <input name="person[][year]" placeholder="Grad year i.e. 2016">
+        <input name="person[][nick]" placeholder="Nickname (not too long)">
+        <textarea name="person[][bio]" placeholder="Bio"> </textarea>
+      </div>
+
+      <hr>
+      <input class="submit btn btn-primary" type="submit" value="Generate">
+    </form>
+
+    <button class="addAnother btn btn-default">Add another person</button>
+
+    <br>
+    <pre id="result">Output</pre>
+
+  </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<!-- other scripts -->
+<script>
+/**
+ * jQuery serializeObject
+ * @copyright 2014, macek <paulmacek@gmail.com>
+ * @link https://github.com/macek/jquery-serialize-object
+ * @license BSD
+ * @version 2.5.0
+ */
+!function(e,i){if("function"==typeof define&&define.amd)define(["exports","jquery"],function(e,r){return i(e,r)});else if("undefined"!=typeof exports){var r=require("jquery");i(exports,r)}else i(e,e.jQuery||e.Zepto||e.ender||e.$)}(this,function(e,i){function r(e,r){function n(e,i,r){return e[i]=r,e}function a(e,i){for(var r,a=e.match(t.key);void 0!==(r=a.pop());)if(t.push.test(r)){var u=s(e.replace(/\[\]$/,""));i=n([],u,i)}else t.fixed.test(r)?i=n([],r,i):t.named.test(r)&&(i=n({},r,i));return i}function s(e){return void 0===h[e]&&(h[e]=0),h[e]++}function u(e){switch(i('[name="'+e.name+'"]',r).attr("type")){case"checkbox":return"on"===e.value?!0:e.value;default:return e.value}}function f(i){if(!t.validate.test(i.name))return this;var r=a(i.name,u(i));return l=e.extend(!0,l,r),this}function d(i){if(!e.isArray(i))throw new Error("formSerializer.addPairs expects an Array");for(var r=0,t=i.length;t>r;r++)this.addPair(i[r]);return this}function o(){return l}function c(){return JSON.stringify(o())}var l={},h={};this.addPair=f,this.addPairs=d,this.serialize=o,this.serializeJSON=c}var t={validate:/^[a-z_][a-z0-9_]*(?:\[(?:\d*|[a-z0-9_]+)\])*$/i,key:/[a-z0-9_]+|(?=\[\])/gi,push:/^$/,fixed:/^\d+$/,named:/^[a-z0-9_]+$/i};return r.patterns=t,r.serializeObject=function(){return new r(i,this).addPairs(this.serializeArray()).serialize()},r.serializeJSON=function(){return new r(i,this).addPairs(this.serializeArray()).serializeJSON()},"undefined"!=typeof i.fn&&(i.fn.serializeObject=r.serializeObject,i.fn.serializeJSON=r.serializeJSON),e.FormSerializer=r,r});
+
+</script>
+<script>
+
+$(function() {
+    $('form#roster').submit(function() {
+        $('#result').text(JSON.stringify($('form').serializeObject(), null, 4));
+        return false;
+    });
+
+    $('button.addAnother').click(function(){
+        $('hr').before('<div class="personForm col-md-6"><input name="person[][name]" placeholder="Name"><input name="person[][img_src]" placeholder="images/photos/15-16/name.jpg"><input name="person[][year]" placeholder="Grad year i.e. 2016"><input name="person[][nick]" placeholder="Nickname (not too long)"><textarea name="person[][bio]" placeholder="Bio"></textarea></div>');
+    });
+});
+</script>
+</html>

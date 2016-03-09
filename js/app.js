@@ -2,7 +2,7 @@ var app = angular.module('Roster', ['ui.router']);
 
 app.config(function ($stateProvider, $urlRouterProvider)
 {
-	$urlRouterProvider.when('', '/roster/3');
+	$urlRouterProvider.when('', '/roster/0');
 	$stateProvider
   .state('roster', {
   		url: '/roster/:id',
