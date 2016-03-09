@@ -19,9 +19,9 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow' rel='stylesheet' type='text/css'>
   <link href='css/style.css' rel='stylesheet' type='text/css'>
 
   <!-- Angular -->
@@ -136,7 +136,7 @@
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="js/bootstrap.min.js"></script>
 
@@ -160,7 +160,7 @@
 				<h2>{{ person.name }} &rsquo;{{ person.year | gradYear }}</h2>
 				<h4>{{ person.nick }}</h4>
 				<div class="texthover">
-					<img src="{{person.img_src}}" class="img-responsive" />
+					<img ng-src="{{person.img_src}}" class="img-responsive" />
 					<div class="overlay">
 						<p>{{ person.bio }}</p>
 					</div>
